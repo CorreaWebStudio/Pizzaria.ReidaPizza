@@ -114,11 +114,11 @@ const PIZZAS = [
 // Quando a pizza tem mais de 1 sabor, o preço é o do sabor mais caro entre os escolhidos.
 const SIZES = [
   { id: 'P1', size: 'P', flavors: 1, label: 'Pequena', sub: '1 sabor (25cm)' },
-  { id: 'M1', size: 'M', flavors: 1, label: 'Média',   sub: '1 sabor (30cm)' },
-  { id: 'M2', size: 'M', flavors: 2, label: 'Média',   sub: '2 sabores (30cm)' },
-  { id: 'G1', size: 'G', flavors: 1, label: 'Grande',  sub: '1 sabor (35cm)' },
-  { id: 'G2', size: 'G', flavors: 2, label: 'Grande',  sub: '2 sabores (35cm)' },
-  { id: 'G3', size: 'G', flavors: 3, label: 'Grande',  sub: '3 sabores (35cm)' },
+  { id: 'M1', size: 'M', flavors: 1, label: 'Média',   sub: '1 sabor - 6 pedaços (30cm)' },
+  { id: 'M2', size: 'M', flavors: 2, label: 'Média',   sub: '2 sabores - 6 pedaços (30cm)' },
+  { id: 'G1', size: 'G', flavors: 1, label: 'Grande',  sub: '1 sabor - 8 pedaços (35cm)' },
+  { id: 'G2', size: 'G', flavors: 2, label: 'Grande',  sub: '2 sabores - 8 pedaços (35cm)' },
+  { id: 'G3', size: 'G', flavors: 3, label: 'Grande',  sub: '3 sabores - 8 pedaços (35cm)' },
 ];
 
 // Borda recheada: preço adicional por pizza, conforme o tamanho (P, M ou G).
