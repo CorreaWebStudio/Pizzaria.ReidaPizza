@@ -486,8 +486,12 @@ function validate() {
   if ($('custType').value === 'entrega') {
     fields.push(['custAddress', v => v.trim().length >= 5]);
   }
+  // Na mesa, o número da mesa (campo Observações) é obrigatório
+  if ($('custType').value === 'mesa') {
+    fields.push(['custNotes', v => v.trim().length >= 1]);
+  }
   let firstBad = null;
-  ['custName', 'custPhone', 'custAddress'].forEach(id => $(id).removeAttribute('aria-invalid'));
+  ['custName', 'custPhone', 'custAddress', 'custNotes'].forEach(id => $(id).removeAttribute('aria-invalid'));
   fields.forEach(([id, ok]) => {
     if (!ok($(id).value)) {
       $(id).setAttribute('aria-invalid', 'true');
@@ -528,7 +532,9 @@ function buildWhatsAppText(o) {
   lines.push('', '*Total:* ' + money(o.total), '');
   lines.push('*Nome:* ' + o.customer.name);
   lines.push('*Telefone:* ' + o.customer.phone);
-  lines.push(o.delivery.type === 'entrega' ? '*Entrega:* ' + o.delivery.address : '*Retirada na pizzaria*');
+  if (o.delivery.type === 'entrega') lines.push('*Entrega:* ' + o.delivery.address);
+  else if (o.delivery.type === 'mesa') lines.push('*Consumo na MESA*');
+  else lines.push('*Retirada na pizzaria*');
   if (o.delivery.complement) lines.push('*Complemento:* ' + o.delivery.complement);
   lines.push('*Pagamento:* ' + o.payment);
   if (o.notes) lines.push('*Obs.:* ' + o.notes);
@@ -765,7 +771,13 @@ if ($('flavorList')) {
     $('deliveryFee').hidden = !delivery;
     $('deliveryFeeText').textContent = 'Taxa de entrega: ' + money(DELIVERY_FEE);
     $('deliveryTimeText').textContent = 'Tempo estimado: ' + DELIVERY_TIME;
-    renderCart(); // atualiza a taxa e o total
+    // Na mesa não existe Pix: a opção some e, se estava marcada, troca para Cartão
+    const mesa = $('custType').value === 'mesa';
+    Array.from($('custPay').options).forEach(o => {
+      if (o.value === 'Pix') { o.hidden = mesa; o.disabled = mesa; }
+    });
+    if (mesa && $('custPay').value === 'Pix') $('custPay').value = 'Cartão';
+    renderCart(); // atualiza a taxa, o total e o Pix
     if (!delivery) $('custAddress').removeAttribute('aria-invalid');
   };
   $('custType').addEventListener('change', toggleAddress);
