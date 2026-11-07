@@ -365,6 +365,14 @@ footer{border-top:1px solid var(--yellow); padding:36px 0;}
 
 /* ===== Escolha de sabores (1, 2 ou 3) ===== */
 .flavor-hint{margin:-4px 0 12px; font-size:14px; color:var(--yellow);}
+/* Títulos de categoria (TRADICIONAL, ESPECIAL, PREMIUM, DOCE) */
+.flavor-category{
+  display:flex; align-items:center; gap:12px;
+  margin:22px 0 2px; font-family:'Space Grotesk',sans-serif;
+  font-size:15px; font-weight:700; letter-spacing:.12em; color:var(--yellow);
+}
+.flavor-category:first-child{margin-top:0;}
+.flavor-category::after{content:""; flex:1; height:1px; background:var(--yellow); opacity:.5;}
 .flavor input:disabled{cursor:not-allowed;}
 .flavor input:disabled + .flavor-body{opacity:.45;}
 .size-body{min-width:104px;}
