@@ -1,7 +1,3 @@
-// ===== Rei da Pizza: recebe pedidos do site e grava na planilha =====
-
-// Coloque seu e-mail para receber um aviso a cada pedido novo.
-// Deixe '' (vazio) se não quiser e-mail.
 const EMAIL_AVISO = 'pizzariareidapizza2026@gmail.com';
 
 const NOME_ABA = 'Pedidos';
@@ -23,8 +19,9 @@ function doPost(e) {
     }
 
     const itens = o.items.map(i => i.qty + 'x ' + i.name + (i.size ? ' (' + i.size + ')' : '')).join(', ');
-    const recebimento = o.delivery.type === 'entrega' ? 'Entrega' : 'Retirada';
-
+    const recebimento = o.delivery.type === 'entrega' ? 'Entrega'
+                      : o.delivery.type === 'mesa'    ? 'Mesa'
+                      : 'Retirada';
     aba.appendRow([
       new Date(),
       'Novo',
