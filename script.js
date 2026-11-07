@@ -527,7 +527,7 @@ function buildPayload() {
  
 function buildWhatsAppText(o) {
   const lines = ['*Novo pedido - Rei da Pizza*', ''];
-  o.items.forEach(i => lines.push(i.qty + 'x ' + i.name + (i.size ? ' (' + i.size + ')' : '') + ' - ' + money(i.subtotal)));
+  o.items.forEach(i => lines.push(i.qty + 'x ' + (i.size ? '(' + i.size + ') ' : '') + i.name + ' - ' + money(i.subtotal)));
   if (o.delivery.fee) lines.push('Taxa de entrega - ' + money(o.delivery.fee));
   lines.push('', '*Total:* ' + money(o.total), '');
   lines.push('*Nome:* ' + o.customer.name);
