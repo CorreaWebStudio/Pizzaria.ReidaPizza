@@ -27,7 +27,7 @@ const WHATSAPP_NUMBER = '5545998377534';
 const ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyIrIeB5zizi_2dpm0KLcU_LwPmmKpuIA7pG6yW_GTjTdE5P0zgAXn09DZ6SU5AEQGfLw/exec';
  
 // Taxa de entrega (em reais), mostrada como aviso quando o cliente escolhe "Entrega".
-const DELIVERY_FEE = 8;
+const DELIVERY_FEE = 10;
 
 // Tempo estimado de entrega, mostrado junto da taxa. Mude o texto quando quiser.
 const DELIVERY_TIME = '40 a 60 min';
@@ -45,64 +45,60 @@ const SEND_TO_WHATSAPP = true;
 // Sabores e preços por tamanho. O preço do cardápio foi usado no tamanho G.
 const PIZZAS = [
   { name: 'TRADICIONAL'},
+  { id: 'quatro_quei',   name: '4 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry e orégano',                            price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'cinco_quei',    name: '5 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry, cheddar e orégano',                   price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'alho_oleo',     name: 'Alho e Óleo',           desc: 'Molho, mussarela, alho, óleo e orégano',                                               price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'americana',     name: 'Americana',             desc: 'Molho, mussarela, calabresa, milho, ovo e orégano',                                    price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'baiana',        name: 'Baiana',                desc: 'Molho, mussarela, calabresa picada, pimenta e orégano',                                price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'bancon',        name: 'Bacon',                 desc: 'Molho, mussarela, bacon e orégano',                                                    price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'brocolis',      name: 'Brócolis',              desc: 'Molho, mussarela, brócolis, bacon, catupiry e orégano',                                price: { P: 50, M: 59.90, G: 80 } },
   { id: 'calabresa',     name: 'Calabresa',             desc: 'Molho, mussarela, calabresa e orégano',                                                price: { P: 50, M: 59.90, G: 80 } },
   { id: 'cala_cebola',   name: 'Calabresa Acebolada',   desc: 'Molho, mussarela, calabresa, cebola e orégano',                                        price: { P: 50, M: 59.90, G: 80 } },
   { id: 'cala_alho',     name: 'Calabresa C/ Alho',     desc: 'Molho, mussarela, calabresa, alho e orégano',                                          price: { P: 50, M: 59.90, G: 80 } },
   { id: 'cala_chedd',    name: 'Calabresa C/ Cheddar',  desc: 'Molho, mussarela, calabresa, cheddar, cebola e orégano',                               price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'quatro_quei',   name: '4 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry e orégano',                            price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'cinco_quei',    name: '5 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry, cheddar e orégano',                   price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'americana',     name: 'Americana',             desc: 'Molho, mussarela, calabresa, milho, ovo e orégano',                                    price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'bancon',        name: 'Bacon',                 desc: 'Molho, mussarela, bacon e orégano',                                                    price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'baiana',        name: 'Baiana',                desc: 'Molho, mussarela, calabresa picada, pimenta e orégano',                                price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'brocolis',      name: 'Brócolis',              desc: 'Molho, mussarela, brócolis, bacon, catupiry e orégano',                                price: { P: 50, M: 59.90, G: 80 } },
   { id: 'carbonara',     name: 'Carbonara',             desc: 'Molho, mussarela, parmesão, bacon, tomate, azeitona, ovo e orégano',                   price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'catupiry',      name: 'Catupiry',              desc: 'Molho, mussarela, catupiry e orégano',                                                 price: { P: 50, M: 59.90, G: 80 } },
   { id: 'crocante',      name: 'Crocante',              desc: 'Molho, mussarela, presunto, milho, bacon, batata palha e orégano',                     price: { P: 50, M: 59.90, G: 80 } },
   { id: 'frango',        name: 'Frango',                desc: 'Molho, mussarela, frango e orégano',                                                   price: { P: 50, M: 59.90, G: 80 } },
   { id: 'frango_catu',   name: 'Frango C/ Catupiry',    desc: 'Molho, mussarela, frango, catupiry e orégano',                                         price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'strog_frang',   name: 'Strogonoff Frango',     desc: 'Molho, mussarela, frango, batata palha e orégano',                                     price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'jardineira',    name: 'Jardineira',            desc: 'Molho, mussarela, palmito, milho, ervilha, azeitona e orégano',                        price: { P: 50, M: 59.90, G: 80 } },
   { id: 'lombo',         name: 'Lombo',                 desc: 'Molho, mussarela, lombo e orégano',                                                    price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'marguerita',    name: 'Marguerita',            desc: 'Molho, mussarela, tomate, manjericão e orégano',                                       price: { P: 50, M: 59.90, G: 80 } },
   { id: 'milho',         name: 'Milho',                 desc: 'Molho, mussarela, milho e orégano',                                                    price: { P: 50, M: 59.90, G: 80 } },
   { id: 'milho_bacon',   name: 'Milho C/ Bacon',        desc: 'Molho, mussarela, milho, bacon, creme de leite e orégano',                             price: { P: 50, M: 59.90, G: 80 } },
   { id: 'mista',         name: 'Mista',                 desc: 'Molho, mussarela, presunto, palmito, champignon, bacon, tomate, azeitona e orégano',   price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'mussarela',     name: 'Mussarela',             desc: 'Molho, mussarela e orégano',                                                           price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'alho_oleo',     name: 'Alho e Óleo',           desc: 'Molho, mussarela, alho, óleo e orégano',                                               price: { P: 50, M: 59.90, G: 80 } },
   { id: 'napolitana',    name: 'Napolitana',            desc: 'Molho, mussarela, parmesão, tomate e orégano',                                         price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'marguerita',    name: 'Marguerita',            desc: 'Molho, mussarela, tomate, manjericão e orégano',                                       price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'portuguesa',    name: 'Portuguesa',            desc: 'Molho, mussarela, presunto, cebola, pimentão, azeitona, ovo e orégano',                price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'palmito',       name: 'Palmito',               desc: 'Molho, mussarela, palmito e orégano',                                                  price: { P: 50, M: 59.90, G: 80 } },
   { id: 'palmi_baco',    name: 'Palmito C/ Bacon',      desc: 'Molho, mussarela, palmito, bacon e orégano',                                           price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'portuguesa',    name: 'Portuguesa',            desc: 'Molho, mussarela, presunto, cebola, pimentão, azeitona, ovo e orégano',                price: { P: 50, M: 59.90, G: 80 } },
   { id: 'siciliana',     name: 'Siciliana',             desc: 'Molho, mussarela, bacon, parmesão, catupiry e orégano',                                price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'vegetariana',   name: 'Vegetariana',           desc: 'Molho, mussarela, palmito, azeitona, tomate, milho, cebola, pimentão e orégano',       price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'strog_frang',   name: 'Strogonoff Frango',     desc: 'Molho, mussarela, frango, batata palha e orégano',                                     price: { P: 50, M: 59.90, G: 80 } },
   { id: 'tomate_seco',   name: 'Tomate Seco',           desc: 'Molho, mussarela, tomate seco, rúcula e orégano',                                      price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'jardineira',    name: 'Jardineira',            desc: 'Molho, mussarela, palmito, milho, ervilha, azeitona e orégano',                        price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'vegetariana',   name: 'Vegetariana',           desc: 'Molho, mussarela, palmito, azeitona, tomate, milho, cebola, pimentão e orégano',       price: { P: 50, M: 59.90, G: 80 } },
   
   { name: 'ESPECIAL'},
-  { id: 'casa',          name: 'Moda da Casa',            desc: 'Molho, mussarela, lombo, calabresa, cebola roxa, requeijão e orégano',                 price: { P: 55, M: 75, G: 85 } },
   { id: 'atum',          name: 'Atum',                    desc: 'Molho, mussarela, atum, cebola e orégano',                                             price: { P: 55, M: 75, G: 85 } },
+  { id: 'bolo_dori',     name: 'Bolonhesa C/ Doritos',    desc: 'Molho, mussarela, cheddar, carne, creme de leite, doritos e orégano',                  price: { P: 55, M: 75, G: 85 } },
   { id: 'broco_espe',    name: 'Brócolis C/ Cheddar',     desc: 'Molho, mussarela, brócolis, milho, cheddar, bacon e orégano',                          price: { P: 55, M: 75, G: 85 } },
   { id: 'frango_rei',    name: 'Frango do Rei',           desc: 'Molho, mussarela, frango, creme de leite, milho e orégano',                            price: { P: 55, M: 75, G: 85 } },
   { id: 'frango_espe',   name: 'Frango Especial',         desc: 'Molho, mussarela, frango, palmito, ervilha, catupiry, cheddar e orégano',              price: { P: 55, M: 75, G: 85 } },
+  { id: 'gorgonzola',    name: 'Gorgonzola',              desc: 'Molho, mussarela, gorgonzola, catupiry e orégano',                                     price: { P: 55, M: 75, G: 85 } },
+  { id: 'grego',         name: 'Grego',                   desc: 'Molho, mussarela, lombo canadense, cebola, palmito e orégano',                         price: { P: 55, M: 75, G: 85 } },
   { id: 'lombo_abaca',   name: 'Lombo C/ Abacaxi',        desc: 'Molho, mussarela, lombo, abacaxi e orégano',                                           price: { P: 55, M: 75, G: 85 } },
   { id: 'lombo_catu',    name: 'Lombo C/ Catupiry',       desc: 'Molho, mussarela, lombo, catupiry e orégano',                                          price: { P: 55, M: 75, G: 85 } },
   { id: 'lombo_champ',   name: 'Lombo C/ Champignon',     desc: 'Molho, mussarela, lombo, champignon e orégano',                                        price: { P: 55, M: 75, G: 85 } },
   { id: 'lombo_espe',    name: 'Lombo Especial',          desc: 'Molho, mussarela, lombo, azeitona, cebola, bacon e orégano',                           price: { P: 55, M: 75, G: 85 } },
-  { id: 'bolo_dori',     name: 'Bolonhesa C/ Doritos',    desc: 'Molho, mussarela, cheddar, carne, creme de leite, doritos e orégano',                  price: { P: 55, M: 75, G: 85 } },
-  { id: 'grego',         name: 'Grego',                   desc: 'Molho, mussarela, lombo canadense, cebola, palmito e orégano',                         price: { P: 55, M: 75, G: 85 } },
-  { id: 'gorgonzola',    name: 'Gorgonzola',              desc: 'Molho, mussarela, gorgonzola, catupiry e orégano',                                     price: { P: 55, M: 75, G: 85 } },
+  { id: 'casa',          name: 'Moda da Casa',            desc: 'Molho, mussarela, lombo, calabresa, cebola roxa, requeijão e orégano',                 price: { P: 55, M: 75, G: 85 } },
   
   { name: 'PREMIUM'},
-  { id: 'file_frita',    name: 'Filé C/ Fritas',           desc: 'Molho, mussarela, carne, batata frita, cebola e orégano',                              price: { P: 60, M: 85, G: 95 } },
-  { id: 'costela',       name: 'Costela',                  desc: 'Molho, mussarela, costela e orégano',                                                  price: { P: 60, M: 85, G: 95 } },
+  { id: 'bacon_frita',   name: 'Bacon C/ Fritas',          desc: 'Molho, mussarela, bacon, fritas e orégano',                                            price: { P: 60, M: 85, G: 95 } },
   { id: 'bife_acebo',    name: 'Bife Acebolado',           desc: 'Molho, mussarela, bife, cebola e orégano',                                             price: { P: 60, M: 85, G: 95 } },
-  { id: 'majestade',     name: 'Pizza Majestade',          desc: 'Molho, mussarela, picanha, camarão, catupiry, cheddar, bacon crocante e orégano',      price: { P: 60, M: 85, G: 95 } },
-  { id: 'picanha',       name: 'Picanha',                  desc: 'Molho, mussarela, picanha, cebola e orégano',                                          price: { P: 60, M: 85, G: 95 } },
-  { id: 'strog_carne',   name: 'Strogonoff Carne',         desc: 'Molho, mussarela, carne, batata palha e orégano',                                      price: { P: 60, M: 85, G: 95 } },
   { id: 'camarao',       name: 'Camarão',                  desc: 'Molho, mussarela, camarão e orégano',                                                  price: { P: 60, M: 85, G: 95 } },
   { id: 'cama_catupi',   name: 'Camarão C/ Catupiry',      desc: 'Molho, mussarela, camarão, catupiry e orégano',                                        price: { P: 60, M: 85, G: 95 } },
-  { id: 'pepperoni',     name: 'Pepperoni',                desc: 'Molho, mussarela, pepperoni, azeitona e orégano',                                      price: { P: 60, M: 85, G: 95 } },
-  { id: 'bacon_frita',   name: 'Bacon C/ Fritas',          desc: 'Molho, mussarela, bacon, fritas e orégano',                                            price: { P: 60, M: 85, G: 95 } },
+  { id: 'costela',       name: 'Costela',                  desc: 'Molho, mussarela, costela e orégano',                                                  price: { P: 60, M: 85, G: 95 } },
+  { id: 'file_frita',    name: 'Filé C/ Fritas',           desc: 'Molho, mussarela, carne, batata frita, cebola e orégano',                              price: { P: 60, M: 85, G: 95 } },
   { id: 'italiana',      name: 'Italiana',                 desc: 'Molho, mussarela, salame, palmito e orégano',                                          price: { P: 60, M: 85, G: 95 } },
+  { id: 'pepperoni',     name: 'Pepperoni',                desc: 'Molho, mussarela, pepperoni, azeitona e orégano',                                      price: { P: 60, M: 85, G: 95 } },
+  { id: 'majestade',     name: 'Pizza Majestade',          desc: 'Molho, mussarela, picanha, camarão, catupiry, cheddar, bacon crocante e orégano',      price: { P: 60, M: 85, G: 95 } },
+  { id: 'strog_carne',   name: 'Strogonoff Carne',         desc: 'Molho, mussarela, carne, batata palha e orégano',                                      price: { P: 60, M: 85, G: 95 } },
   
   { name: 'DOCE'},
   { id: 'Abacaxi',       name: 'Abacaxi',                     desc: 'Mussarela, abacaxi e leite condensado',                                                price: { P: 55, M: 70, G: 80 } },
@@ -129,7 +125,7 @@ const SIZES = [
 ];
 
 // Borda recheada: preço adicional por pizza, conforme o tamanho (P, M ou G).
-const BORDER_PRICE = { P: 10, M: 12, G: 15 };
+const BORDER_PRICE = { P: 10, M: 10, G: 10 };
 // Recheios de borda disponíveis. AJUSTE conforme o que a pizzaria oferece.
 const BORDERS = [
   { id: 'mussarela', name: 'Mussarela' },
