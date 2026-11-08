@@ -61,6 +61,7 @@ const PIZZAS = [
   { id: 'frango_catu',   name: 'Frango C/ Catupiry',    desc: 'Molho, mussarela, frango, catupiry e orégano',                                         price: { P: 50, M: 59.90, G: 80 } },
   { id: 'strog_frang',   name: 'Strogonoff Frango',     desc: 'Molho, mussarela, frango, batata palha e orégano',                                     price: { P: 50, M: 59.90, G: 80 } },
   { id: 'lombo',         name: 'Lombo',                 desc: 'Molho, mussarela, lombo e orégano',                                                    price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'milho',         name: 'Milho',                 desc: 'Molho, mussarela, milho e orégano',                                                    price: { P: 50, M: 59.90, G: 80 } },
   { id: 'milho_bacon',   name: 'Milho C/ Bacon',        desc: 'Molho, mussarela, milho, bacon, creme de leite e orégano',                             price: { P: 50, M: 59.90, G: 80 } },
   { id: 'mista',         name: 'Mista',                 desc: 'Molho, mussarela, presunto, palmito, champignon, bacon, tomate, azeitona e orégano',   price: { P: 50, M: 59.90, G: 80 } },
   { id: 'mussarela',     name: 'Mussarela',             desc: 'Molho, mussarela e orégano',                                                           price: { P: 50, M: 59.90, G: 80 } },
