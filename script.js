@@ -106,7 +106,6 @@ const PIZZAS = [
   { name: 'DOCE'},
   { id: 'Abacaxi',       name: 'Abacaxi',                     desc: 'Mussarela, abacaxi e leite condensado',                                                price: { P: 55, M: 70, G: 80 } },
   { id: 'banana',        name: 'Banana',                      desc: 'Mussarela, banana e canela',                                                           price: { P: 55, M: 70, G: 80 } },
-  { id: 'Banoffee',      name: 'Banoffee',                    desc: 'Mussarela, banana, chocolate branco e leite condensado',                               price: { P: 55, M: 70, G: 80 } },
   { id: 'Brigadeiro',    name: 'Brigadeiro',                  desc: 'Mussarela, chocolate preto e granulado',                                               price: { P: 55, M: 70, G: 80 } },
   { id: 'choco_bran',    name: 'Chocolate Branco',            desc: 'Mussarela e chocolate branco',                                                         price: { P: 55, M: 70, G: 80 } },
   { id: 'choco_preto',   name: 'Chocolate Preto',             desc: 'Mussarela e chocolate preto',                                                          price: { P: 55, M: 70, G: 80 } },
