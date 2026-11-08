@@ -155,7 +155,7 @@ const DRINKS = [
   { id: 'refri1l',   name: 'Refrigerante 1L',          price: 10, flavors: SABORES },
   { id: 'refri600',  name: 'Refrigerante 600 ml',      price: 8,  flavors: SABORES },
   { id: 'lata',      name: 'Refrigerante lata 350 ml', price: 6,  flavors: SABORES_LATA },
-  { id: 'agua',      name: 'Água',                     price: 3,  flavors: AGUA_S_N },
+  { id: 'agua',      name: 'Água',                     price: 4,  flavors: AGUA_S_N },
   { id: 'cevala',    name: 'Cerveja Lata',             price: 6,  flavors: CERVEJA_LATA },
   { id: 'long',      name: 'Long Neck',                price: 10, flavors: LONG_NECK }
 ];
@@ -528,7 +528,7 @@ function buildPayload() {
 }
  
 function buildWhatsAppText(o) {
-  const SEP = '            =';
+  const SEP = '=============';
   const lines = ['*Novo pedido - Rei da Pizza*', ''];
 
   const pizzas = o.items.filter(i => i.kind !== 'drink');
@@ -540,7 +540,7 @@ function buildWhatsAppText(o) {
     (i.border ? 'com borda ' + i.border + ' + ' : '') + i.pizzaName;
 
   pizzas.forEach(i => lines.push(pizzaLine(i)));
-  if (o.notes) lines.push('*Obs.:* ' + o.notes);
+  if (o.notes) lines.push('*Obs.: ' + o.notes + '*');
   lines.push(SEP);
 
   // Linhas de valores, somadas com "+" (a última linha não leva "+")
