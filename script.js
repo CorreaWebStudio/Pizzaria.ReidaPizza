@@ -521,7 +521,7 @@ function buildPayload() {
     notes: $('custNotes').value.trim(),
     items: state.cart.map(i => {
       const info = itemInfo(i);
-      return { kind: i.kind, id: i.id || i.flavors.join('+'), sizeLabel: info.sizeText, flavorCount: info.flavorCount, name: info.label, border: info.border, flavor: info.flavor, size: info.size, qty: i.qty, unitPrice: info.unit, subtotal: info.unit * i.qty };
+      return { kind: i.kind, id: i.id || i.flavors.join('+'), sizeLabel: info.sizeText, flavorCount: info.flavorCount, name: info.label, pizzaName: info.name, border: info.border, flavor: info.flavor, size: info.size, qty: i.qty, unitPrice: info.unit, subtotal: info.unit * i.qty };
     }),
     total: orderTotal(),
   };
@@ -529,12 +529,25 @@ function buildPayload() {
  
 function buildWhatsAppText(o) {
   const lines = ['*Novo pedido - Rei da Pizza*', ''];
-  const itemLine = i => i.qty + 'x ' + (i.size ? '(' + i.size + ') ' : '') + i.name + ' - ' + money(i.subtotal);
-  // Ordem: pizzas, Obs., taxa de entrega, bebidas
-  o.items.filter(i => i.kind !== 'drink').forEach(i => lines.push(itemLine(i)));
+
+  // Pizza sem preço: "1x (G) com borda Mussarela + Calabresa + Baiana"
+  const pizzaLine = i =>
+    i.qty + 'x ' + (i.size ? '(' + i.size + ') ' : '') +
+    (i.border ? 'com borda ' + i.border + ' + ' : '') + i.pizzaName;
+
+  // Bebida continua com o preço na mesma linha
+  const drinkLine = i => i.qty + 'x ' + i.name + ' - ' + money(i.subtotal);
+
+  const pizzas = o.items.filter(i => i.kind !== 'drink');
+  const drinks = o.items.filter(i => i.kind === 'drink');
+
+  // Ordem: pizzas, Obs., preços das pizzas, taxa de entrega, bebidas
+  pizzas.forEach(i => lines.push(pizzaLine(i)));
   if (o.notes) lines.push('*Obs.:* ' + o.notes, '');
+  pizzas.forEach(i => lines.push('- ' + money(i.subtotal)));
   if (o.delivery.fee) lines.push('Taxa de entrega - ' + money(o.delivery.fee));
-  o.items.filter(i => i.kind === 'drink').forEach(i => lines.push(itemLine(i)));
+  drinks.forEach(i => lines.push(drinkLine(i)));
+
   lines.push('', '*Total:* ' + money(o.total), '');
   lines.push('*Nome:* ' + o.customer.name);
   lines.push('*Telefone:* ' + o.customer.phone);
@@ -545,7 +558,7 @@ function buildWhatsAppText(o) {
   lines.push('*Pagamento:* ' + o.payment);
   return lines.join('\n');
 }
- 
+
 async function sendOrder() {
   if (!state.cart.some(i => i.kind === 'pizza')) {
     setStatus('Adicione pelo menos uma pizza ao pedido.', 'error');
