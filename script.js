@@ -528,27 +528,33 @@ function buildPayload() {
 }
  
 function buildWhatsAppText(o) {
+  const SEP = '            =';
   const lines = ['*Novo pedido - Rei da Pizza*', ''];
+
+  const pizzas = o.items.filter(i => i.kind !== 'drink');
+  const drinks = o.items.filter(i => i.kind === 'drink');
 
   // Pizza sem preço: "1x (G) com borda Mussarela + Calabresa + Baiana"
   const pizzaLine = i =>
     i.qty + 'x ' + (i.size ? '(' + i.size + ') ' : '') +
     (i.border ? 'com borda ' + i.border + ' + ' : '') + i.pizzaName;
 
-  // Bebida continua com o preço na mesma linha
-  const drinkLine = i => i.qty + 'x ' + i.name + ' - ' + money(i.subtotal);
-
-  const pizzas = o.items.filter(i => i.kind !== 'drink');
-  const drinks = o.items.filter(i => i.kind === 'drink');
-
-  // Ordem: pizzas, Obs., preços das pizzas, taxa de entrega, bebidas
   pizzas.forEach(i => lines.push(pizzaLine(i)));
-  if (o.notes) lines.push('*Obs.:* ' + o.notes, '');
-  pizzas.forEach(i => lines.push('- ' + money(i.subtotal)));
-  if (o.delivery.fee) lines.push('Taxa de entrega - ' + money(o.delivery.fee));
-  drinks.forEach(i => lines.push(drinkLine(i)));
+  if (o.notes) lines.push('*Obs.:* ' + o.notes);
+  lines.push(SEP);
 
-  lines.push('', '*Total:* ' + money(o.total), '');
+  // Linhas de valores, somadas com "+" (a última linha não leva "+")
+  const prices = pizzas.map(i => 'Pizza : ' + money(i.subtotal));
+  if (o.delivery.fee) prices.push('Taxa de entrega : ' + money(o.delivery.fee));
+  drinks.forEach(i =>
+    prices.push(i.qty + 'x ' + i.pizzaName + (i.flavor ? ' : ' + i.flavor : '') + ' : ' + money(i.subtotal))
+  );
+  prices.forEach((t, idx) => lines.push(t + (idx < prices.length - 1 ? ' +' : '')));
+  lines.push(SEP);
+
+  lines.push('*Total:* ' + money(o.total));
+  lines.push(SEP);
+
   lines.push('*Nome:* ' + o.customer.name);
   lines.push('*Telefone:* ' + o.customer.phone);
   if (o.delivery.type === 'entrega') lines.push('*Entrega:* ' + o.delivery.address);
