@@ -152,7 +152,7 @@ const DRINKS = [
   { id: 'refri600',  name: 'Refrigerante 600 ml',      price: 8,  flavors: SABORES },
   { id: 'lata',      name: 'Refrigerante lata 350 ml', price: 6,  flavors: SABORES_LATA },
   { id: 'agua',      name: 'Água',                     price: 3,  flavors: AGUA_S_N },
-  { id: 'cevala',    name: 'Cerveja Lata',             price: 6,  flavors: CERVEJA_LATA },
+  { id: 'cevala',    name: 'Cerveja Lata',             price: 5,  flavors: CERVEJA_LATA },
   { id: 'long',      name: 'Long Neck',                price: 10, flavors: LONG_NECK }
 ];
  
