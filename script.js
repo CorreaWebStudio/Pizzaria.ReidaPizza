@@ -49,7 +49,8 @@ const PIZZAS = [
   { id: 'cala_cebola',   name: 'Calabresa Acebolada',   desc: 'Molho, mussarela, calabresa, cebola e orégano',                                        price: { P: 50, M: 59.90, G: 80 } },
   { id: 'cala_alho',     name: 'Calabresa C/ Alho',     desc: 'Molho, mussarela, calabresa, alho e orégano',                                          price: { P: 50, M: 59.90, G: 80 } },
   { id: 'cala_chedd',    name: 'Calabresa C/ Cheddar',  desc: 'Molho, mussarela, calabresa, cheddar, cebola e orégano',                               price: { P: 50, M: 59.90, G: 80 } },
-  { id: 'quatro_quei',   name: 'Quatro Queijo',         desc: 'Molho, mussarela, provolone, parmesão, catupiry e orégano',                            price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'quatro_quei',   name: '4 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry e orégano',                            price: { P: 50, M: 59.90, G: 80 } },
+  { id: 'cinco_quei',    name: '5 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry, cheddar e orégano',                   price: { P: 50, M: 59.90, G: 80 } },
   { id: 'americana',     name: 'Americana',             desc: 'Molho, mussarela, calabresa, milho, ovo e orégano',                                    price: { P: 50, M: 59.90, G: 80 } },
   { id: 'bancon',        name: 'Bacon',                 desc: 'Molho, mussarela, bacon e orégano',                                                    price: { P: 50, M: 59.90, G: 80 } },
   { id: 'baiana',        name: 'Baiana',                desc: 'Molho, mussarela, calabresa picada, pimenta e orégano',                                price: { P: 50, M: 59.90, G: 80 } },
@@ -87,7 +88,6 @@ const PIZZAS = [
   { id: 'lombo_champ',   name: 'Lombo C/ Champignon',     desc: 'Molho, mussarela, lombo, champignon e orégano',                                        price: { P: 55, M: 75, G: 85 } },
   { id: 'lombo_espe',    name: 'Lombo Especial',          desc: 'Molho, mussarela, lombo, azeitona, cebola, bacon e orégano',                           price: { P: 55, M: 75, G: 85 } },
   { id: 'bolo_dori',     name: 'Bolonhesa C/ Doritos',    desc: 'Molho, mussarela, cheddar, carne, creme de leite, doritos e orégano',                  price: { P: 55, M: 75, G: 85 } },
-  { id: 'cinco_quei',    name: 'Cinco Queijo',            desc: 'Molho, mussarela, provolone, parmesão, catupiry, cheddar e orégano',                   price: { P: 55, M: 75, G: 85 } },
   { id: 'grego',         name: 'Grego',                   desc: 'Molho, mussarela, lombo canadense, cebola, palmito e orégano',                         price: { P: 55, M: 75, G: 85 } },
   { id: 'gorgonzola',    name: 'Gorgonzola',              desc: 'Molho, mussarela, gorgonzola, catupiry e orégano',                                     price: { P: 55, M: 75, G: 85 } },
   
