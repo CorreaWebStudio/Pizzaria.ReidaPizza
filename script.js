@@ -87,7 +87,8 @@ const PIZZAS = [
   { id: 'lombo_champ',   name: 'Lombo C/ Champignon',     desc: 'Molho, mussarela, lombo, champignon e orégano',                                        price: { P: 55, M: 75, G: 85 } },
   { id: 'lombo_espe',    name: 'Lombo Especial',          desc: 'Molho, mussarela, lombo, azeitona, cebola, bacon e orégano',                           price: { P: 55, M: 75, G: 85 } },
   { id: 'casa',          name: 'Moda da Casa',            desc: 'Molho, mussarela, lombo, calabresa, cebola roxa, requeijão e orégano',                 price: { P: 55, M: 75, G: 85 } },
-  
+  { id: 'strog_carne',   name: 'Strogonoff Carne',        desc: 'Molho, mussarela, carne, batata palha e orégano',                                      price: { P: 55, M: 75, G: 85 } },
+ 
   { name: 'PREMIUM'},
   { id: 'bacon_frita',   name: 'Bacon C/ Fritas',          desc: 'Molho, mussarela, bacon, fritas e orégano',                                            price: { P: 60, M: 85, G: 95 } },
   { id: 'bife_acebo',    name: 'Bife Acebolado',           desc: 'Molho, mussarela, bife, cebola e orégano',                                             price: { P: 60, M: 85, G: 95 } },
@@ -98,7 +99,6 @@ const PIZZAS = [
   { id: 'italiana',      name: 'Italiana',                 desc: 'Molho, mussarela, salame, palmito e orégano',                                          price: { P: 60, M: 85, G: 95 } },
   { id: 'pepperoni',     name: 'Pepperoni',                desc: 'Molho, mussarela, pepperoni, azeitona e orégano',                                      price: { P: 60, M: 85, G: 95 } },
   { id: 'majestade',     name: 'Pizza Majestade',          desc: 'Molho, mussarela, picanha, camarão, catupiry, cheddar, bacon crocante e orégano',      price: { P: 60, M: 85, G: 95 } },
-  { id: 'strog_carne',   name: 'Strogonoff Carne',         desc: 'Molho, mussarela, carne, batata palha e orégano',                                      price: { P: 60, M: 85, G: 95 } },
   
   { name: 'DOCE'},
   { id: 'Abacaxi',       name: 'Abacaxi',                     desc: 'Mussarela, abacaxi e leite condensado',                                                price: { P: 55, M: 70, G: 80 } },
