@@ -145,7 +145,7 @@ const SABORES_REFRI = ['Kuat Guaraná', 'Fanta Laranja', 'Fanta Uva', 'Fanta Gua
 const SABORES = ['Coca-Cola', 'Coca-Cola Zero'];
 const SABORES_LATA = ['Coca-Cola', 'Coca-Cola Zero', 'Fanta Laranja', 'Fanta Uva'];
 const AGUA_S_N = ['Com Gás', 'Sem Gás'];
-const CERVEJA_LATA = ['Brahma', 'Amstel', 'Skol'];
+const CERVEJA_LATA = ['Brahma 269ml', 'Skol 269ml', 'Amstel 350ml'];
 const LONG_NECK = ['Heineken', 'Sol', 'Skol Zero Álcool'];
 
 // Bebidas e preços.
@@ -156,7 +156,7 @@ const DRINKS = [
   { id: 'refri600',  name: 'Refrigerante 600 ml',      price: 8,  flavors: SABORES },
   { id: 'lata',      name: 'Refrigerante lata 350 ml', price: 6,  flavors: SABORES_LATA },
   { id: 'agua',      name: 'Água',                     price: 4,  flavors: AGUA_S_N },
-  { id: 'cevala',    name: 'Cerveja Lata',             price: 6,  flavors: CERVEJA_LATA },
+  { id: 'cevala',    name: 'Cerveja Lata',             price: 5,  flavors: CERVEJA_LATA },
   { id: 'long',      name: 'Long Neck',                price: 10, flavors: LONG_NECK }
 ];
  
