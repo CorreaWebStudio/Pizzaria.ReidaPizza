@@ -537,19 +537,22 @@ function buildWhatsAppText(o) {
   // Pizza sem preço, sabores um embaixo do outro:
   // 1 (G)
   // com borda Chocolate Preto
+  //
   // Calabresa Acebolada
   // Strogonoff Carne
+  // Dois Amores
   pizzas.forEach(i => {
-    lines.push(i.qty + ' ' + (i.size ? '(' + i.size + ')' : ''));
+    lines.push(i.qty + (i.size ? ' (' + i.size + ')' : ''));
     if (i.border) lines.push('com borda ' + i.border);
+    lines.push('');
     i.pizzaName.split(' + ').forEach(f => lines.push(f));
   });
   if (o.notes) lines.push('*Obs.: ' + o.notes + '*');
   lines.push('', SEP);
 
   // Linhas de valores, somadas com "+" (a última linha não leva "+")
-  const prices = pizzas.map(i => 'Pizza : ' + money(i.subtotal));
-  if (o.delivery.fee) prices.push('Taxa de entrega : ' + money(o.delivery.fee));
+  const prices = pizzas.map(i => '*Pizza:* ' + money(i.subtotal));
+  if (o.delivery.fee) prices.push('*Taxa de entrega:* ' + money(o.delivery.fee));
   drinks.forEach(i =>
     prices.push(i.qty + 'x ' + i.pizzaName + (i.flavor ? ' : ' + i.flavor : '') + ' : ' + money(i.subtotal))
   );
