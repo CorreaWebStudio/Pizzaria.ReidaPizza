@@ -129,7 +129,7 @@ const SIZES = [
 ];
 
 // Borda recheada: preço adicional por pizza, conforme o tamanho (P, M ou G).
-const BORDER_PRICE = { P: 10, M: 12, G: 15 };
+const BORDER_PRICE = { P: 10, M: 10, G: 10 };
 // Recheios de borda disponíveis. AJUSTE conforme o que a pizzaria oferece.
 const BORDERS = [
   { id: 'mussarela', name: 'Mussarela' },
