@@ -27,7 +27,7 @@ const WHATSAPP_NUMBER = '5545998377534';
 const ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyIrIeB5zizi_2dpm0KLcU_LwPmmKpuIA7pG6yW_GTjTdE5P0zgAXn09DZ6SU5AEQGfLw/exec';
  
 // Taxa de entrega (em reais), mostrada como aviso quando o cliente escolhe "Entrega".
-const DELIVERY_FEE = 8;
+const DELIVERY_FEE = 10;
 
 // Tempo estimado de entrega, mostrado junto da taxa. Mude o texto quando quiser.
 const DELIVERY_TIME = '40 a 60 min';
