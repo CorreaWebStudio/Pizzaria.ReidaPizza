@@ -743,7 +743,7 @@ function updatePix() {
   $('pixPaid').checked = pixState.paid;
   ['pixIdRow', 'pixCopy', 'pixPaidRow'].forEach(id => show(id, true));
   $('pixStatus').textContent = pixState.paid
-    ? 'Pagamento informado. Envie o comprovante do pix para confirmação.'
+    ? 'Após o pagamento, envie o comprovante do pix para confirmação.'
     : 'Aguardando pagamento.';
   $('pixStatus').classList.toggle('ok', pixState.paid);
 }
