@@ -45,35 +45,35 @@ const SEND_TO_WHATSAPP = true;
 // Sabores e preços por tamanho. O preço do cardápio foi usado no tamanho G.
 const PIZZAS = [
   { name: 'TRADICIONAL'},
-  { id: '4_queijo',      name: '4 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry e orégano',                            price: { P: 50, M: 59.90, G: 75 } },
-  { id: '5_queijo',      name: '5 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry, cheddar e orégano',                   price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'alho_oleo',     name: 'Alho e Óleo',           desc: 'Molho, mussarela, alho, óleo e orégano',                                               price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'americana',     name: 'Americana',             desc: 'Molho, mussarela, calabresa, milho, ovo e orégano',                                    price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'bancon',        name: 'Bacon',                 desc: 'Molho, mussarela, bacon e orégano',                                                    price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'baiana',        name: 'Baiana',                desc: 'Molho, mussarela, calabresa picada, pimenta e orégano',                                price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'brocolis',      name: 'Brócolis',              desc: 'Molho, mussarela, brócolis, bacon, catupiry e orégano',                                price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'calabresa',     name: 'Calabresa',             desc: 'Molho, mussarela, calabresa e orégano',                                                price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'cala_cebola',   name: 'Calabresa Acebolada',   desc: 'Molho, mussarela, calabresa, cebola e orégano',                                        price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'cala_alho',     name: 'Calabresa C/ Alho',     desc: 'Molho, mussarela, calabresa, alho e orégano',                                          price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'cala_chedd',    name: 'Calabresa C/ Cheddar',  desc: 'Molho, mussarela, calabresa, cheddar, cebola e orégano',                               price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'carbonara',     name: 'Carbonara',             desc: 'Molho, mussarela, parmesão, bacon, tomate, azeitona, ovo e orégano',                   price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'catupiry',      name: 'Catupiry',              desc: 'Molho, mussarela, catupiry e orégano',                                                 price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'crocante',      name: 'Crocante',              desc: 'Molho, mussarela, presunto, milho, bacon, batata palha e orégano',                     price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'frango',        name: 'Frango',                desc: 'Molho, mussarela, frango e orégano',                                                   price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'frango_catu',   name: 'Frango C/ Catupiry',    desc: 'Molho, mussarela, frango, catupiry e orégano',                                         price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'jardineira',    name: 'Jardineira',            desc: 'Molho, mussarela, palmito, milho, ervilha, azeitona e orégano',                        price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'lombo',         name: 'Lombo',                 desc: 'Molho, mussarela, lombo e orégano',                                                    price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'marguerita',    name: 'Marguerita',            desc: 'Molho, mussarela, tomate, manjericão e orégano',                                       price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'milho',         name: 'Milho',                 desc: 'Molho, mussarela, milho e orégano',                                                    price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'milho_bacon',   name: 'Milho C/ Bacon',        desc: 'Molho, mussarela, milho, bacon, creme de leite e orégano',                             price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'mista',         name: 'Mista',                 desc: 'Molho, mussarela, presunto, palmito, champignon, bacon, tomate, azeitona e orégano',   price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'napolitana',    name: 'Napolitana',            desc: 'Molho, mussarela, parmesão, tomate e orégano',                                         price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'palmi_baco',    name: 'Palmito C/ Bacon',      desc: 'Molho, mussarela, palmito, bacon e orégano',                                           price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'portuguesa',    name: 'Portuguesa',            desc: 'Molho, mussarela, presunto, cebola, pimentão, azeitona, ovo e orégano',                price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'siciliana',     name: 'Siciliana',             desc: 'Molho, mussarela, bacon, parmesão, catupiry e orégano',                                price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'strog_frang',   name: 'Strogonoff Frango',     desc: 'Molho, mussarela, frango, batata palha e orégano',                                     price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'tomate_seco',   name: 'Tomate Seco',           desc: 'Molho, mussarela, tomate seco, rúcula e orégano',                                      price: { P: 50, M: 59.90, G: 75 } },
-  { id: 'vegetariana',   name: 'Vegetariana',           desc: 'Molho, mussarela, palmito, azeitona, tomate, milho, cebola, pimentão e orégano',       price: { P: 50, M: 59.90, G: 75 } },
+  { id: '4_queijo',      name: '4 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry e orégano',                            price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: '5_queijo',      name: '5 Queijo',              desc: 'Molho, mussarela, provolone, parmesão, catupiry, cheddar e orégano',                   price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'alho_oleo',     name: 'Alho e Óleo',           desc: 'Molho, mussarela, alho, óleo e orégano',                                               price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'americana',     name: 'Americana',             desc: 'Molho, mussarela, calabresa, milho, ovo e orégano',                                    price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'bancon',        name: 'Bacon',                 desc: 'Molho, mussarela, bacon e orégano',                                                    price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'baiana',        name: 'Baiana',                desc: 'Molho, mussarela, calabresa picada, pimenta e orégano',                                price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'brocolis',      name: 'Brócolis',              desc: 'Molho, mussarela, brócolis, bacon, catupiry e orégano',                                price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'calabresa',     name: 'Calabresa',             desc: 'Molho, mussarela, calabresa e orégano',                                                price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'cala_cebola',   name: 'Calabresa Acebolada',   desc: 'Molho, mussarela, calabresa, cebola e orégano',                                        price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'cala_alho',     name: 'Calabresa C/ Alho',     desc: 'Molho, mussarela, calabresa, alho e orégano',                                          price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'cala_chedd',    name: 'Calabresa C/ Cheddar',  desc: 'Molho, mussarela, calabresa, cheddar, cebola e orégano',                               price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'carbonara',     name: 'Carbonara',             desc: 'Molho, mussarela, parmesão, bacon, tomate, azeitona, ovo e orégano',                   price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'catupiry',      name: 'Catupiry',              desc: 'Molho, mussarela, catupiry e orégano',                                                 price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'crocante',      name: 'Crocante',              desc: 'Molho, mussarela, presunto, milho, bacon, batata palha e orégano',                     price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'frango',        name: 'Frango',                desc: 'Molho, mussarela, frango e orégano',                                                   price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'frango_catu',   name: 'Frango C/ Catupiry',    desc: 'Molho, mussarela, frango, catupiry e orégano',                                         price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'jardineira',    name: 'Jardineira',            desc: 'Molho, mussarela, palmito, milho, ervilha, azeitona e orégano',                        price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'lombo',         name: 'Lombo',                 desc: 'Molho, mussarela, lombo e orégano',                                                    price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'marguerita',    name: 'Marguerita',            desc: 'Molho, mussarela, tomate, manjericão e orégano',                                       price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'milho',         name: 'Milho',                 desc: 'Molho, mussarela, milho e orégano',                                                    price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'milho_bacon',   name: 'Milho C/ Bacon',        desc: 'Molho, mussarela, milho, bacon, creme de leite e orégano',                             price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'mista',         name: 'Mista',                 desc: 'Molho, mussarela, presunto, palmito, champignon, bacon, tomate, azeitona e orégano',   price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'napolitana',    name: 'Napolitana',            desc: 'Molho, mussarela, parmesão, tomate e orégano',                                         price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'palmi_baco',    name: 'Palmito C/ Bacon',      desc: 'Molho, mussarela, palmito, bacon e orégano',                                           price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'portuguesa',    name: 'Portuguesa',            desc: 'Molho, mussarela, presunto, cebola, pimentão, azeitona, ovo e orégano',                price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'siciliana',     name: 'Siciliana',             desc: 'Molho, mussarela, bacon, parmesão, catupiry e orégano',                                price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'strog_frang',   name: 'Strogonoff Frango',     desc: 'Molho, mussarela, frango, batata palha e orégano',                                     price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'tomate_seco',   name: 'Tomate Seco',           desc: 'Molho, mussarela, tomate seco, rúcula e orégano',                                      price: { P: 50, M: 59.90, G: 55.90 } },
+  { id: 'vegetariana',   name: 'Vegetariana',           desc: 'Molho, mussarela, palmito, azeitona, tomate, milho, cebola, pimentão e orégano',       price: { P: 50, M: 59.90, G: 55.90 } },
   
   { name: 'ESPECIAL'},
   { id: 'atum',          name: 'Atum',                    desc: 'Molho, mussarela, atum, cebola e orégano',                                           price: { P: 55, M: 75, G: 85 } },
@@ -89,7 +89,7 @@ const PIZZAS = [
   { id: 'lombo_espe',    name: 'Lombo Especial',          desc: 'Molho, mussarela, lombo, azeitona, cebola, bacon e orégano',                         price: { P: 55, M: 75, G: 85 } },
   { id: 'casa',          name: 'Moda da Casa',            desc: 'Molho, mussarela, lombo, calabresa, cebola roxa, requeijão e orégano',               price: { P: 55, M: 75, G: 85 } },
   { id: 'strog_carne',   name: 'Strogonoff Carne',        desc: 'Molho, mussarela, carne, batata palha e orégano',                                    price: { P: 55, M: 75, G: 85 } },
-  
+
   { name: 'PREMIUM'},
   { id: 'bacon_frita',   name: 'Bacon C/ Fritas',         desc: 'Molho, mussarela, bacon, fritas e orégano',                                          price: { P: 60, M: 85, G: 95 } },
   { id: 'bife_acebo',    name: 'Bife Acebolado',          desc: 'Molho, mussarela, bife, cebola e orégano',                                           price: { P: 60, M: 85, G: 95 } },
@@ -137,6 +137,19 @@ const BORDERS = [
   { id: 'choco_bra', name: 'Chocolate Branco' },
 ];
 
+// ---- COMBO DO DIA ----------------------------------
+// Para trocar o combo de hoje, mude só este bloco.
+// days: dias da semana em que o combo aparece (0 = domingo, 1 = segunda ... 6 = sábado).
+//       Use null para o combo aparecer todos os dias.
+const COMBO = {
+  name: 'Combo da Segunda do Rei',
+  price: 64.90,                // preço fechado: pizza + bebida
+  sizeOpt: 'M2',               // Média, até 2 sabores (id de SIZES)
+  maxFlavors: 2,
+  drink: 'Fanta Guaraná 2L',   // bebida que já vem no combo
+  days: [1],
+};
+
 // Sabores.
 const SABOR_REFRI = ['Coca-Cola', 'Coca-Cola Zero', 'Sprite'];
 const SABORES_REFRI = ['Kuat Guaraná', 'Fanta Laranja', 'Fanta Uva', 'Fanta Guaraná'];
@@ -164,8 +177,18 @@ const DRINKS = [
 // Itens sem "id" em PIZZAS são títulos de categoria (TRADICIONAL, ESPECIAL...), não sabores.
 // Itens com name vazio são apenas separadores antigos e são ignorados.
 const isHeader = p => !p.id;
+
+// Sabores permitidos no combo: somente os da categoria TRADICIONAL
+const COMBO_FLAVOR_IDS = new Set();
+(() => {
+  let cat = null;
+  PIZZAS.forEach(p => {
+    if (isHeader(p)) cat = p.name;
+    else if (cat === 'TRADICIONAL') COMBO_FLAVOR_IDS.add(p.id);
+  });
+})();
 const firstFlavor = PIZZAS.find(p => !isHeader(p));
-const state = { flavors: [firstFlavor.id], sizeOpt: 'G1', border: null, qty: 1, cart: [] };
+const state = { flavors: [firstFlavor.id], sizeOpt: 'G1', border: null, qty: 1, combo: false, cart: [] };
  
 const $ = id => document.getElementById(id);
 const money = n => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -194,6 +217,19 @@ function itemInfo(item) {
   const name = item.flavors.map(id => findPizza(id).name).join(' + ');
   const border = item.border ? BORDERS.find(b => b.id === item.border) : null;
   const borderPrice = border ? BORDER_PRICE[opt.size] : 0;
+  if (item.combo) {
+    return {
+      name,
+      flavor: null,
+      border: border ? border.name : null,
+      combo: true,
+      label: COMBO.name + ' - ' + name + ' + ' + COMBO.drink + (border ? ' com borda ' + border.name : ''),
+      unit: COMBO.price + borderPrice,
+      size: opt.size,
+      sizeText: COMBO.name + ' · ' + opt.label + ', até ' + COMBO.maxFlavors + ' sabores + ' + COMBO.drink + (border ? ' · Borda ' + border.name : ''),
+      flavorCount: item.flavors.length,
+    };
+  }
   return {
     name,
     flavor: null,
@@ -239,7 +275,7 @@ function renderFlavors() {
   const multi = opt.flavors > 1;
 
   list.innerHTML = '';
-  PIZZAS.forEach(p => {
+  PIZZAS.filter(p => !state.combo || COMBO_FLAVOR_IDS.has(p.id) || (isHeader(p) && p.name === 'TRADICIONAL')).forEach(p => {
     // Título de categoria: não é um sabor, então não tem input nem preço
     if (isHeader(p)) {
       if (!p.name) return;
@@ -278,7 +314,9 @@ function syncFlavors() {
   });
   const hint = $('flavorHint');
   if (hint) {
-    hint.textContent = multi
+    hint.textContent = state.combo
+      ? 'Combo: escolha até ' + opt.flavors + ' sabores tradicionais (' + state.flavors.length + ' de ' + opt.flavors + ').'
+      : multi
       ? 'Escolha ' + opt.flavors + ' sabores (' + state.flavors.length + ' de ' + opt.flavors + '). O preço é o do sabor mais caro.'
       : 'Escolha 1 sabor.';
   }
@@ -290,7 +328,7 @@ function renderPrices() {
   const size = findSizeOpt(state.sizeOpt).size;
   document.querySelectorAll('#flavorList .flavor').forEach(label => {
     const pizza = findPizza(label.querySelector('input').value);
-    label.querySelector('.flavor-body > span').textContent = money(pizza.price[size]);
+    label.querySelector('.flavor-body > span').textContent = state.combo ? 'no combo' : money(pizza.price[size]);
   });
   renderBorderPrices();
 }
@@ -333,19 +371,24 @@ function setQty(n) {
 // ---- CARRINHO --------------------------------------
 function addToCart() {
   const opt = findSizeOpt(state.sizeOpt);
-  if (state.flavors.length !== opt.flavors) {
-    $('addHint').textContent = 'Escolha ' + opt.flavors + (opt.flavors > 1 ? ' sabores' : ' sabor') + ' antes de adicionar.';
+  const flavorsOk = state.combo ? state.flavors.length >= 1 : state.flavors.length === opt.flavors;
+  if (!flavorsOk) {
+    $('addHint').textContent = state.combo
+      ? 'Escolha 1 ou 2 sabores antes de adicionar o combo.'
+      : 'Escolha ' + opt.flavors + (opt.flavors > 1 ? ' sabores' : ' sabor') + ' antes de adicionar.';
     return;
   }
 
   const key = [...state.flavors].sort().join('+');
-  const existing = state.cart.find(i => i.kind === 'pizza' && i.sizeOpt === opt.id && (i.border || null) === state.border && [...i.flavors].sort().join('+') === key);
+  const existing = state.cart.find(i => i.kind === 'pizza' && !!i.combo === state.combo && i.sizeOpt === opt.id && (i.border || null) === state.border && [...i.flavors].sort().join('+') === key);
   if (existing) existing.qty += state.qty;
-  else state.cart.push({ kind: 'pizza', sizeOpt: opt.id, flavors: [...state.flavors], border: state.border, qty: state.qty });
+  else state.cart.push({ kind: 'pizza', sizeOpt: opt.id, flavors: [...state.flavors], border: state.border, combo: state.combo, qty: state.qty });
 
   const names = state.flavors.map(id => findPizza(id).name).join(' + ');
   const borderName = state.border ? BORDERS.find(b => b.id === state.border).name : null;
-  $('addHint').textContent = state.qty + 'x ' + names + ' (' + opt.label + ', ' + opt.sub + (borderName ? ', borda ' + borderName : '') + ') adicionada ao pedido.';
+  $('addHint').textContent = state.combo
+    ? state.qty + 'x ' + COMBO.name + ' (' + names + ' + ' + COMBO.drink + (borderName ? ', borda ' + borderName : '') + ') adicionado ao pedido.'
+    : state.qty + 'x ' + names + ' (' + opt.label + ', ' + opt.sub + (borderName ? ', borda ' + borderName : '') + ') adicionada ao pedido.';
   setQty(1);
   renderCart();
   setStatus('');
@@ -521,7 +564,7 @@ function buildPayload() {
     notes: $('custNotes').value.trim(),
     items: state.cart.map(i => {
       const info = itemInfo(i);
-      return { kind: i.kind, id: i.id || i.flavors.join('+'), sizeLabel: info.sizeText, flavorCount: info.flavorCount, name: info.label, pizzaName: info.name, border: info.border, flavor: info.flavor, size: info.size, qty: i.qty, unitPrice: info.unit, subtotal: info.unit * i.qty };
+      return { kind: i.kind, id: i.id || i.flavors.join('+'), sizeLabel: info.sizeText, flavorCount: info.flavorCount, name: info.label, pizzaName: info.name, border: info.border, flavor: info.flavor, size: info.size, combo: !!info.combo, qty: i.qty, unitPrice: info.unit, subtotal: info.unit * i.qty };
     }),
     total: orderTotal(),
   };
@@ -542,16 +585,17 @@ function buildWhatsAppText(o) {
   // Strogonoff Carne
   // Dois Amores
   pizzas.forEach(i => {
-    lines.push(i.qty + (i.size ? ' (' + i.size + ')' : ''));
+    lines.push(i.qty + (i.size ? ' (' + i.size + ')' : '') + (i.combo ? ' - ' + COMBO.name.toUpperCase() : ''));
     if (i.border) lines.push('com borda ' + i.border);
     lines.push('');
     i.pizzaName.split(' + ').forEach(f => lines.push(f));
+    if (i.combo) lines.push('+ ' + COMBO.drink);
   });
   if (o.notes) lines.push('*Obs.: ' + o.notes + '*');
   lines.push('', SEP);
 
   // Linhas de valores, somadas com "+" (a última linha não leva "+")
-  const prices = pizzas.map(i => '*Pizza:* ' + money(i.subtotal));
+  const prices = pizzas.map(i => (i.combo ? '*Combo:* ' : '*Pizza:* ') + money(i.subtotal));
   if (o.delivery.fee) prices.push('*Taxa de entrega:* ' + money(o.delivery.fee));
   drinks.forEach(i =>
     prices.push(i.qty + 'x ' + i.pizzaName + (i.flavor ? ' : ' + i.flavor : '') + ' : ' + money(i.subtotal))
@@ -778,9 +822,55 @@ function resetPix() {
   pixState.code = '';
 }
 
+// ---- COMBO DO DIA: tela e comportamento ------------
+// Desenha o cartão do combo (só aparece nos dias definidos em COMBO.days)
+function renderCombo() {
+  const box = $('comboBox');
+  const list = $('comboList');
+  if (!box || !list) return;
+
+  const active = !COMBO.days || COMBO.days.includes(new Date().getDay());
+  box.hidden = !active;
+  if ($('promoDia')) $('promoDia').hidden = !active;
+  if (!active) return;
+
+  list.innerHTML = '';
+  const label = document.createElement('label');
+  label.className = 'size combo-card';
+  label.innerHTML = '<input type="checkbox" id="comboToggle"><span class="size-body"><b></b><small></small></span>';
+  label.querySelector('b').textContent = COMBO.name + ' - ' + money(COMBO.price);
+  label.querySelector('small').textContent = '1 pizza média tradicional (até ' + COMBO.maxFlavors + ' sabores) + 1 ' + COMBO.drink;
+  label.querySelector('input').addEventListener('change', e => setCombo(e.target.checked));
+  list.appendChild(label);
+}
+
+// Liga/desliga o modo combo: trava o tamanho (Média, até 2 sabores) e mostra só os tradicionais
+function setCombo(on) {
+  state.combo = on;
+  if (on) {
+    state.sizeOpt = COMBO.sizeOpt;
+    state.flavors = state.flavors.filter(id => COMBO_FLAVOR_IDS.has(id)).slice(0, COMBO.maxFlavors);
+    if (!state.flavors.length) state.flavors = [[...COMBO_FLAVOR_IDS][0]];
+  } else {
+    state.sizeOpt = 'G1';
+    state.flavors = state.flavors.slice(0, 1);
+  }
+  const toggle = $('comboToggle');
+  if (toggle) toggle.checked = on;
+  document.querySelectorAll('#sizeList input').forEach(input => {
+    input.checked = input.value === state.sizeOpt;
+    input.disabled = on;
+  });
+  $('sizeList').classList.toggle('is-locked', on);
+  $('addBtn').textContent = on ? 'Adicionar combo ao pedido' : 'Adicionar ao pedido';
+  $('addHint').textContent = '';
+  renderFlavors();
+}
+
 // ---- INICIALIZAÇÃO ---------------------------------
 if ($('flavorList')) {
   renderChoices();
+  renderCombo();
   renderBorders();
   renderDrinks();
   renderCart();
