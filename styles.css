@@ -409,13 +409,3 @@ footer{border-top:1px solid var(--yellow); padding:36px 0;}
 @media (max-width:420px){
   .pay-row{grid-template-columns:1fr;}
 }
-
-@keyframes sirene {
-  0%, 100% { background: #d90000; color: #fff; }
-  50%      { background: #fff200; color: #d90000; }
-}
-
-.piscando {
-  padding: 10px;
-  animation: sirene 0.8s infinite;
-}
