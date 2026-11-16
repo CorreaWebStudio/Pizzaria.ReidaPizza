@@ -409,3 +409,19 @@ footer{border-top:1px solid var(--yellow); padding:36px 0;}
 @media (max-width:420px){
   .pay-row{grid-template-columns:1fr;}
 }
+
+@keyframes sirene {
+  0%, 100% { background: #d90000; color: #fff; }
+  50%      { background: #fff200; color: #d90000; }
+}
+
+.piscando {
+  padding: 10px;
+  animation: sirene 0.8s infinite;
+}
+/* Combo do dia */
+.combo-card { flex: 1 1 100%; }
+.combo-card .size-body { text-align: left; border-color: var(--yellow); }
+.is-locked .size { cursor: not-allowed; opacity: .45; }
+.is-locked .size:has(input:checked) { opacity: 1; }
+.is-locked .size input { cursor: not-allowed; }
