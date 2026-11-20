@@ -159,7 +159,7 @@ const AGUA_S_N = ['Com Gás', 'Sem Gás'];
 const CEVA_CONTI = ['Conti 269ml'];
 const CERVEJA_LATA = ['Brahma 269ml', 'Skol 269ml', 'Amstel 350ml'];
 const LONG_NECK = ['Heineken', 'Sol'];
-const LONG_0 = ['Skol Zero Álcool'];
+const LONG_0 = ['Skol 0% Álcool'];
 
 // Bebidas e preços.
 const DRINKS = [
