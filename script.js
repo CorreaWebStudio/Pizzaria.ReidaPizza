@@ -158,7 +158,8 @@ const SABORES_LATA = ['Coca-Cola', 'Coca-Cola Zero', 'Fanta Laranja', 'Fanta Uva
 const AGUA_S_N = ['Com Gás', 'Sem Gás'];
 const CEVA_CONTI = ['Conti 269ml'];
 const CERVEJA_LATA = ['Brahma 269ml', 'Skol 269ml', 'Amstel 350ml'];
-const LONG_NECK = ['Heineken', 'Sol', 'Skol Zero Álcool'];
+const LONG_NECK = ['Heineken', 'Sol'];
+const LONG_0 = ['Skol Zero Álcool'];
 
 // Bebidas e preços.
 const DRINKS = [
@@ -170,7 +171,8 @@ const DRINKS = [
   { id: 'agua',      name: 'Água',                     price: 3,  flavors: AGUA_S_N },
   { id: 'cevala',    name: 'Cerveja Lata',             price: 5,  flavors: CERVEJA_LATA },
   { id: 'conti',     name: 'Cerveja Conti',            price: 4,  flavors: CEVA_CONTI },
-  { id: 'long',      name: 'Long Neck',                price: 10, flavors: LONG_NECK }
+  { id: 'long',      name: 'Long Neck',                price: 10, flavors: LONG_NECK },
+  { id: 'long_0',    name: 'Long 0%',                  price: 8,  flavors: LONG_0 }
 ];
  
 // ---- ESTADO ----------------------------------------
