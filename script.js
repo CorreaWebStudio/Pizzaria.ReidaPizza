@@ -147,7 +147,7 @@ const COMBO = {
   sizeOpt: 'M2',               // Média, até 2 sabores (id de SIZES)
   maxFlavors: 2,
   drink: 'Fanta Guaraná 2L',   // bebida que já vem no combo
-  days: [2],
+  days: [3],
 };
 
 // Sabores.
