@@ -428,3 +428,18 @@ footer{border-top:1px solid var(--yellow); padding:36px 0;}
 
 /* Descrição dos lanches */
 .lanche-desc{display:block; margin-top:2px; font-size:13.5px; color:var(--ink-soft);}
+
+/* ===== Correção: conteúdo passando da tela no celular ===== */
+/* Colunas da grade podem encolher até caber na tela (o padrão "1fr" não encolhe abaixo do conteúdo) */
+.order-grid > *, .hero-grid > *, .loc-grid > *{min-width:0;}
+.field-group{min-width:0;}   /* o fieldset, por padrão, nunca fica mais estreito que o conteúdo */
+.flavor-list, .drink-list{grid-template-columns:minmax(0,1fr);}
+.form-grid, .pay-row{grid-template-columns:repeat(2, minmax(0,1fr));}
+.flavor-body > div{flex:1; min-width:0;}   /* nome e descrição quebram a linha em vez de empurrar o preço */
+.flavor-body span{flex-shrink:0;}
+@media (max-width:760px){
+  .order-grid, .hero-grid, .loc-grid, .about-grid, .form-grid{grid-template-columns:minmax(0,1fr);}
+}
+@media (max-width:420px){
+  .pay-row{grid-template-columns:minmax(0,1fr);}
+}
