@@ -425,3 +425,6 @@ footer{border-top:1px solid var(--yellow); padding:36px 0;}
 .is-locked .size { cursor: not-allowed; opacity: .45; }
 .is-locked .size:has(input:checked) { opacity: 1; }
 .is-locked .size input { cursor: not-allowed; }
+
+/* Descrição dos lanches */
+.lanche-desc{display:block; margin-top:2px; font-size:13.5px; color:var(--ink-soft);}
