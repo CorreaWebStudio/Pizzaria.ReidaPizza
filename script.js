@@ -142,12 +142,11 @@ const BORDERS = [
 // days: dias da semana em que o combo aparece (0 = domingo, 1 = segunda ... 6 = sábado).
 //       Use null para o combo aparecer todos os dias.
 const COMBO = {
-  name: 'Combo da Terça do Rei',
+  name: 'Combo da Sexta do Rei',
   price: 64.90,                // preço fechado: pizza + bebida
-  sizeOpt: 'M2',               // Média, até 2 sabores (id de SIZES)
-  maxFlavors: 2,
-  drink: 'Fanta Guaraná 2L',   // bebida que já vem no combo
-  days: [2],
+  sizeOpt: 'G3',               // Grande, até 3 sabores (id de SIZES)
+  maxFlavors: 3,
+  days: [5],
 };
 
 // Sabores.
