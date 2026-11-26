@@ -147,7 +147,7 @@ const COMBO = {
   sizeOpt: 'M2',               // Média, até 2 sabores (id de SIZES)
   maxFlavors: 2,
   drink: 'Fanta Guaraná 2L',   // bebida que já vem no combo
-  days: [1],
+  days: [2],
 };
 
 // Sabores.
@@ -159,7 +159,7 @@ const AGUA_S_N = ['Com Gás', 'Sem Gás'];
 const CEVA_CONTI = ['Conti 269ml'];
 const CERVEJA_LATA = ['Brahma 269ml', 'Skol 269ml', 'Amstel 350ml'];
 const LONG_NECK = ['Heineken', 'Sol'];
-const LONG_0 = ['Skol 0% Álcool'];
+const LONG_0 = ['Skol Zero Álcool'];
 
 // Bebidas e preços.
 const DRINKS = [
@@ -174,6 +174,21 @@ const DRINKS = [
   { id: 'long',      name: 'Long Neck',                price: 10, flavors: LONG_NECK },
   { id: 'long_0',    name: 'Long 0%',                  price: 8,  flavors: LONG_0 }
 ];
+
+// Lanches. EDITE aqui os nomes, descrições e preços (valores provisórios).
+const LANCHES = [
+  { id: 'x_salada',    name: 'X-Salada',    desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate e maionese',                                        price: 20 },
+  { id: 'x_bacon',     name: 'X-Bacon',     desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese e bacon',                                 price: 27.90 },
+  { id: 'x_calabresa', name: 'X-Calabresa', desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese e calabresa',                             price: 27.90 },
+  { id: 'x_tudo',      name: 'X-Tudo',      desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese, ovo, batata palha, bacon e calabresa',   price: 36.90 },
+];
+
+// Adicionais opcionais dos lanches (preço extra por lanche). EDITE os valores (provisórios).
+const ADICIONAIS = [
+  { id: 'catupiry', name: 'Catupiry', price: 4 },
+  { id: 'cheddar',  name: 'Cheddar',  price: 4 },
+];
+const findAdicional = id => ADICIONAIS.find(a => a.id === id);
  
 // ---- ESTADO ----------------------------------------
 // Itens sem "id" em PIZZAS são títulos de categoria (TRADICIONAL, ESPECIAL...), não sabores.
@@ -196,6 +211,7 @@ const $ = id => document.getElementById(id);
 const money = n => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 const findPizza = id => PIZZAS.find(p => p.id === id);
 const findDrink = id => DRINKS.find(d => d.id === id);
+const findLanche = id => LANCHES.find(l => l.id === id);
  
 const findSizeOpt = id => SIZES.find(o => o.id === id);
 
@@ -213,6 +229,19 @@ function itemInfo(item) {
       unit: d.price,
       size: null,
       sizeText: null,
+    };
+  }
+  if (item.kind === 'lanche') {
+    const l = findLanche(item.id);
+    const add = item.add ? findAdicional(item.add) : null;
+    const name = l.name + (add ? ' com ' + add.name : '');
+    return {
+      name,
+      flavor: null,
+      label: name,
+      unit: l.price + (add ? add.price : 0),
+      size: null,
+      sizeText: 'Lanche' + (add ? ' · Adicional ' + add.name : ''),
     };
   }
   const opt = findSizeOpt(item.sizeOpt);
@@ -410,6 +439,89 @@ function orderTotal() {
   return cartTotal() + deliveryFee();
 }
  
+// ---- LANCHES ---------------------------------------
+// Adicional escolhido em cada lanche (null = sem adicional)
+state.lancheAdd = {};
+
+const currentAdd = id => state.lancheAdd[id] || null;
+
+function renderLanches() {
+  const list = $('lancheList');
+  if (!list) return;
+  list.innerHTML = '';
+  LANCHES.forEach(l => {
+    const row = document.createElement('div');
+    row.className = 'drink';
+    row.dataset.id = l.id;
+    row.innerHTML = '<div class="drink-info"><b></b><small class="lanche-desc"></small><span class="drink-price"></span><select class="drink-flavor"></select><small class="drink-note" hidden></small></div><div class="qty qty-sm"><button type="button" data-act="minus">−</button><output>0</output><button type="button" data-act="plus">+</button></div>';
+    row.querySelector('b').textContent = l.name;
+    row.querySelector('.lanche-desc').textContent = l.desc;
+    row.querySelector('.drink-price').textContent = money(l.price);
+
+    const select = row.querySelector('select');
+    select.setAttribute('aria-label', 'Adicional de ' + l.name);
+    const none = document.createElement('option');
+    none.value = '';
+    none.textContent = 'Sem adicional';
+    select.appendChild(none);
+    ADICIONAIS.forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a.id;
+      opt.textContent = 'Adicional de ' + a.name + ' (+ ' + money(a.price) + ')';
+      select.appendChild(opt);
+    });
+    select.addEventListener('change', () => {
+      state.lancheAdd[l.id] = select.value || null;
+      syncLanches();
+    });
+
+    const minus = row.querySelector('[data-act="minus"]');
+    const plus = row.querySelector('[data-act="plus"]');
+    minus.setAttribute('aria-label', 'Diminuir ' + l.name);
+    plus.setAttribute('aria-label', 'Aumentar ' + l.name);
+    minus.addEventListener('click', () => setLancheQty(l.id, currentAdd(l.id), lancheQty(l.id, currentAdd(l.id)) - 1));
+    plus.addEventListener('click', () => setLancheQty(l.id, currentAdd(l.id), lancheQty(l.id, currentAdd(l.id)) + 1));
+    list.appendChild(row);
+  });
+}
+
+function lancheQty(id, add) {
+  const item = state.cart.find(i => i.kind === 'lanche' && i.id === id && (i.add || null) === add);
+  return item ? item.qty : 0;
+}
+
+function setLancheQty(id, add, n) {
+  n = Math.min(20, Math.max(0, n));
+  const index = state.cart.findIndex(i => i.kind === 'lanche' && i.id === id && (i.add || null) === add);
+  if (n === 0) {
+    if (index >= 0) state.cart.splice(index, 1);
+  } else if (index >= 0) {
+    state.cart[index].qty = n;
+  } else {
+    state.cart.push({ kind: 'lanche', id, add, qty: n });
+  }
+  setStatus('');
+  renderCart();
+}
+
+// Mantém contadores e avisos dos lanches iguais ao carrinho
+function syncLanches() {
+  document.querySelectorAll('#lancheList .drink').forEach(row => {
+    const id = row.dataset.id;
+    row.querySelector('output').textContent = lancheQty(id, currentAdd(id));
+
+    // Resumo do que já está no pedido deste lanche (com e sem adicional)
+    const mine = state.cart.filter(i => i.kind === 'lanche' && i.id === id);
+    const note = row.querySelector('.drink-note');
+    if (mine.length) {
+      note.textContent = 'No pedido: ' + mine.map(i => i.qty + 'x ' + (i.add ? 'com ' + findAdicional(i.add).name : 'sem adicional')).join(', ');
+      note.hidden = false;
+    } else {
+      note.hidden = true;
+    }
+  });
+}
+
 // ---- BEBIDAS ---------------------------------------
 // Sabor escolhido em cada bebida (só para as que têm sabores)
 state.drinkFlavor = {};
@@ -515,6 +627,7 @@ function renderCart() {
   $('cartFee').textContent = money(fee);
   $('cartTotal').textContent = money(orderTotal());
   syncDrinks();
+  syncLanches();
   updatePix();
 }
  
@@ -576,7 +689,8 @@ function buildWhatsAppText(o) {
   const SEP = '=============';
   const lines = ['*Novo pedido - Rei da Pizza*', ''];
 
-  const pizzas = o.items.filter(i => i.kind !== 'drink');
+  const pizzas = o.items.filter(i => i.kind === 'pizza');
+  const lanches = o.items.filter(i => i.kind === 'lanche');
   const drinks = o.items.filter(i => i.kind === 'drink');
 
   // Pizza sem preço, sabores um embaixo do outro:
@@ -593,11 +707,16 @@ function buildWhatsAppText(o) {
     i.pizzaName.split(' + ').forEach(f => lines.push(f));
     if (i.combo) lines.push('+ ' + COMBO.drink);
   });
+  if (lanches.length) {
+    if (pizzas.length) lines.push('');
+    lanches.forEach(i => lines.push(i.qty + '- ' + i.pizzaName));
+  }
   if (o.notes) lines.push('*Obs.: ' + o.notes + '*');
   lines.push('', SEP);
 
   // Linhas de valores, somadas com "+" (a última linha não leva "+")
   const prices = pizzas.map(i => (i.combo ? '*Combo:* ' : '*Pizza:* ') + money(i.subtotal));
+  lanches.forEach(i => prices.push(i.qty + '- ' + i.pizzaName + ' : ' + money(i.subtotal)));
   if (o.delivery.fee) prices.push('*Taxa de entrega:* ' + money(o.delivery.fee));
   drinks.forEach(i =>
     prices.push(i.qty + 'x ' + i.pizzaName + (i.flavor ? ' : ' + i.flavor : '') + ' : ' + money(i.subtotal))
@@ -619,8 +738,8 @@ function buildWhatsAppText(o) {
 }
 
 async function sendOrder() {
-  if (!state.cart.some(i => i.kind === 'pizza')) {
-    setStatus('Adicione pelo menos uma pizza ao pedido.', 'error');
+  if (!state.cart.some(i => i.kind === 'pizza' || i.kind === 'lanche')) {
+    setStatus('Adicione pelo menos uma pizza ou lanche ao pedido.', 'error');
     return;
   }
   const bad = validate();
@@ -874,6 +993,7 @@ if ($('flavorList')) {
   renderChoices();
   renderCombo();
   renderBorders();
+  renderLanches();
   renderDrinks();
   renderCart();
   $('qtyMinus').addEventListener('click', () => setQty(state.qty - 1));
