@@ -139,13 +139,20 @@ const BORDERS = [
 
 // ---- COMBO DO DIA ----------------------------------
 // Para trocar o combo de hoje, mude só este bloco.
-// days: dias da semana em que o combo aparece (0 = domingo, 1 = segunda ... 6 = sábado).
-//       Use null para o combo aparecer todos os dias.
+// days:      dias da semana em que o combo aparece (0 = domingo, 1 = segunda ... 6 = sábado).
+//            Use null para o combo aparecer todos os dias.
+// sizeOpt:   tamanho fixo do combo (id de SIZES). maxFlavors: máximo de sabores.
+// flavorIds: sabores permitidos no combo (ids de PIZZAS). null = todos os tradicionais.
+// drink:     bebida que vem junto (ex.: 'Fanta Guaraná 2L'). null = combo sem bebida.
+// desc:      texto que aparece no cartão do combo.
 const COMBO = {
   name: 'Combo da Sexta do Rei',
-  price: 64.90,                // preço fechado: pizza + bebida
-  sizeOpt: 'G3',               // Grande, até 3 sabores (id de SIZES)
+  price: 64.90,                // preço fechado
+  sizeOpt: 'G3',               // Grande, até 3 sabores
   maxFlavors: 3,
+  flavorIds: ['4_queijo', 'frango_catu', 'calabresa'],
+  drink: null,
+  desc: '1 pizza grande (12 pedaços), até 3 sabores: 4 Queijo, Frango C/ Catupiry ou Calabresa',
   days: [5],
 };
 
@@ -203,6 +210,11 @@ const COMBO_FLAVOR_IDS = new Set();
     else if (cat === 'TRADICIONAL') COMBO_FLAVOR_IDS.add(p.id);
   });
 })();
+// Se o combo define a lista de sabores (COMBO.flavorIds), ela vale no lugar dos tradicionais
+if (COMBO.flavorIds) {
+  COMBO_FLAVOR_IDS.clear();
+  COMBO.flavorIds.forEach(id => COMBO_FLAVOR_IDS.add(id));
+}
 const firstFlavor = PIZZAS.find(p => !isHeader(p));
 const state = { flavors: [firstFlavor.id], sizeOpt: 'G1', border: null, qty: 1, combo: false, cart: [] };
  
@@ -253,10 +265,10 @@ function itemInfo(item) {
       flavor: null,
       border: border ? border.name : null,
       combo: true,
-      label: COMBO.name + ' - ' + name + ' + ' + COMBO.drink + (border ? ' com borda ' + border.name : ''),
+      label: COMBO.name + ' - ' + name + (COMBO.drink ? ' + ' + COMBO.drink : '') + (border ? ' com borda ' + border.name : ''),
       unit: COMBO.price + borderPrice,
       size: opt.size,
-      sizeText: COMBO.name + ' · ' + opt.label + ', até ' + COMBO.maxFlavors + ' sabores + ' + COMBO.drink + (border ? ' · Borda ' + border.name : ''),
+      sizeText: COMBO.name + ' · ' + opt.label + ', até ' + COMBO.maxFlavors + ' sabores' + (COMBO.drink ? ' + ' + COMBO.drink : '') + (border ? ' · Borda ' + border.name : ''),
       flavorCount: item.flavors.length,
     };
   }
@@ -345,7 +357,7 @@ function syncFlavors() {
   const hint = $('flavorHint');
   if (hint) {
     hint.textContent = state.combo
-      ? 'Combo: escolha até ' + opt.flavors + ' sabores tradicionais (' + state.flavors.length + ' de ' + opt.flavors + ').'
+      ? 'Combo: escolha de 1 a ' + opt.flavors + ' sabores entre os disponíveis (' + state.flavors.length + ' de ' + opt.flavors + ').'
       : multi
       ? 'Escolha ' + opt.flavors + ' sabores (' + state.flavors.length + ' de ' + opt.flavors + '). O preço é o do sabor mais caro.'
       : 'Escolha 1 sabor.';
@@ -404,7 +416,7 @@ function addToCart() {
   const flavorsOk = state.combo ? state.flavors.length >= 1 : state.flavors.length === opt.flavors;
   if (!flavorsOk) {
     $('addHint').textContent = state.combo
-      ? 'Escolha 1 ou 2 sabores antes de adicionar o combo.'
+      ? 'Escolha de 1 a ' + COMBO.maxFlavors + ' sabores antes de adicionar o combo.'
       : 'Escolha ' + opt.flavors + (opt.flavors > 1 ? ' sabores' : ' sabor') + ' antes de adicionar.';
     return;
   }
@@ -417,7 +429,7 @@ function addToCart() {
   const names = state.flavors.map(id => findPizza(id).name).join(' + ');
   const borderName = state.border ? BORDERS.find(b => b.id === state.border).name : null;
   $('addHint').textContent = state.combo
-    ? state.qty + 'x ' + COMBO.name + ' (' + names + ' + ' + COMBO.drink + (borderName ? ', borda ' + borderName : '') + ') adicionado ao pedido.'
+    ? state.qty + 'x ' + COMBO.name + ' (' + names + (COMBO.drink ? ' + ' + COMBO.drink : '') + (borderName ? ', borda ' + borderName : '') + ') adicionado ao pedido.'
     : state.qty + 'x ' + names + ' (' + opt.label + ', ' + opt.sub + (borderName ? ', borda ' + borderName : '') + ') adicionada ao pedido.';
   setQty(1);
   renderCart();
@@ -704,7 +716,7 @@ function buildWhatsAppText(o) {
     if (i.border) lines.push('com borda ' + i.border);
     lines.push('');
     i.pizzaName.split(' + ').forEach(f => lines.push(f));
-    if (i.combo) lines.push('+ ' + COMBO.drink);
+    if (i.combo && COMBO.drink) lines.push('+ ' + COMBO.drink);
   });
   if (lanches.length) {
     if (pizzas.length) lines.push('');
@@ -959,12 +971,12 @@ function renderCombo() {
   label.className = 'size combo-card';
   label.innerHTML = '<input type="checkbox" id="comboToggle"><span class="size-body"><b></b><small></small></span>';
   label.querySelector('b').textContent = COMBO.name + ' - ' + money(COMBO.price);
-  label.querySelector('small').textContent = '1 pizza média tradicional (até ' + COMBO.maxFlavors + ' sabores) + 1 ' + COMBO.drink;
+  label.querySelector('small').textContent = COMBO.desc;
   label.querySelector('input').addEventListener('change', e => setCombo(e.target.checked));
   list.appendChild(label);
 }
 
-// Liga/desliga o modo combo: trava o tamanho (Média, até 2 sabores) e mostra só os tradicionais
+// Liga/desliga o modo combo: trava o tamanho e mostra só os sabores do combo
 function setCombo(on) {
   state.combo = on;
   if (on) {
