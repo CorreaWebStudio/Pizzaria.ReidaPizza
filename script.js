@@ -183,10 +183,10 @@ const DRINKS = [
 
 // Lanches. EDITE aqui os nomes, descrições e preços (valores provisórios).
 const LANCHES = [
-  { id: 'x_salada',    name: 'X-Salada',    desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate e maionese',                                        price: 15.99 },
-  { id: 'x_bacon',     name: 'X-Bacon',     desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese e bacon',                                 price: 22.90 },
-  { id: 'x_calabresa', name: 'X-Calabresa', desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese e calabresa',                             price: 22.90 },
-  { id: 'x_tudo',      name: 'X-Tudo',      desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese, ovo, batata palha, bacon e calabresa',   price: 32.90 },
+  { id: 'x_salada',    name: 'X-Salada',    desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate e maionese',                                        price: 20 },
+  { id: 'x_bacon',     name: 'X-Bacon',     desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese e bacon',                                 price: 27.90 },
+  { id: 'x_calabresa', name: 'X-Calabresa', desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese e calabresa',                             price: 27.90 },
+  { id: 'x_tudo',      name: 'X-Tudo',      desc: 'Pão de brioche, hambúrguer, queijo, presunto, alface, milho, tomate, maionese, ovo, batata palha, bacon e calabresa',   price: 36.90 },
 ];
 
 // Adicionais opcionais dos lanches (preço extra por lanche). EDITE os valores (provisórios).
